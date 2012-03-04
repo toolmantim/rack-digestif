@@ -1,7 +1,7 @@
 Rack::Digestif
 ==============
 
-A rack middleware to ensure Sprockets assets are served regardless of whether the asset digest matches.
+A rack middleware that ensures Sprockets assets are served regardless of whether the asset digest matches.
 
 All asset URLs such as:
 

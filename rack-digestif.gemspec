@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.name = 'rack-digestif'
   s.version = '0.1'
 
-  s.summary = "A rack middleware to ensure Sprockets assets are served regardless of whether the asset digest matches"
+  s.summary = "A rack middleware that ensures Sprockets assets are served regardless of whether the asset digest matches"
   s.description = s.summary
 
   s.author = 'Tim Lucas'
