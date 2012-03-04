@@ -47,7 +47,7 @@ Firstly add the gem to the `assets` group in your Gemfile:
 
 and then add the following to your application.rb:
 
-    ?
+    config.middleware.insert_before Rack::Lock, Rack::Digestif
 
 
 License
