@@ -14,9 +14,9 @@ gets rewritten to:
 Why?
 ----
 
-Sprockets (and the Rails asset pipeline) use MD5 hashes of files to create cache-busting URLs. These URLs play nicer with caching proxies, but they have the disadvantage that requests to old assets cause a 404, rather than rendering the latest asset as the query-string method would. This can cause big problems during a deployment when a browser requests an asset during a deployment and gets 404 resulting in an unstyled or javascript-less page.
+Sprockets (and the Rails asset pipeline) use MD5 hashes of files to create cache-busting URLs. The new digest URLs play nicer with caching proxies than the old query-string method, but they've one big disadvantage: requests to old assets cause a 404 rather than just serving the (latest) asset. The problem becomes particularly noticable during a deployment when a browser requests an asset but the deployment has updated it and they get a 404, resulting in an unstyled or javascript-less page.
 
-Luckily the fix is easy; Sprockets puts two copies of each compiled asset into the /public/assets directory, one with the digest and one without. All that's needed from us is to rewrite incoming requests and remove the digest. You can do this in nginx or your HTTP proxy, or you can do it with `Rack::Digestif`.
+Luckily the fix is easy; Sprockets puts two copies of each compiled asset into the /public/assets directory, one with the digest and one without. All that's needed is to rewrite incoming requests and remove the digest from the path. You can do this in nginx, your HTTP proxy, or something like rack-rewrite, or you can simply throw in `Rack::Digestif`.
 
 Installation
 ------------
@@ -26,7 +26,7 @@ Installation
 Usage
 -----
 
-Add it to your `config.ru` rackup file:
+Add it to your Rackup `config.ru` file:
 
     require 'rack/digestif'
     use Rack::Digestif
@@ -53,4 +53,4 @@ and then add the following to your application.rb:
 License
 -------
 
-Insert license here
+See MIT-LICENSE for details.
