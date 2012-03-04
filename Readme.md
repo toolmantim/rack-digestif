@@ -1,7 +1,7 @@
 Rack::Digestif
 ==============
 
-A rack middleware to ensure Sprockets assets are served regardless of whether the requested digest matches that on the server.
+A rack middleware to ensure Sprockets assets are served regardless of whether the asset digest matches.
 
 All asset URLs such as:
 
@@ -16,9 +16,9 @@ This works thanks to Sprockets compiling both digest and non-digest filenames in
 Why?
 ----
 
-Sprockets (and the Rails asset pipeline) use MD5 hashes of files to create cache-busting URLs. These new URLs have one big disadvantage over the old query-string method: requests to old assets digests cause a 404, unlike the old method which would serve the asset file regardless of the correctness of the timestamp. This problem becomes particularly noticable during a deployment when a browser requests an asset but its digest has been updated on the server and so they receive a 404, resulting in an unstyled or javascript-less page.
+Sprockets (and the Rails asset pipeline) use MD5 hashes of files to create cache-busting URLs. These new URLs have one big disadvantage over the old query-string method: requests to assets with an out-of-date digest cause a 404, unlike the old method which would serve the asset file regardless of the correctness of the timestamp. This problem becomes particularly noticable during a deployment when a browser requests an asset but the digest has been updated on the server and so they receive a 404, resulting in an unstyled or javascript-less page.
 
-Luckily the fix is easy; Sprockets puts two copies of each compiled asset into the /public/assets directory, one with the digest and one without. All that's needed is to rewrite incoming requests and remove the digest from the path. You can do this in nginx, your HTTP proxy, or something like rack-rewrite, or you can simply throw in `Rack::Digestif`.
+Luckily the fix is easy; Sprockets generates every compiled file with and without a digest, so all that's needed is to rewrite incoming requests to remove the digest from the path. You can do this in nginx or HTTP proxy, rack-rewrite, or using `Rack::Digestif`.
 
 Installation
 ------------
@@ -33,7 +33,7 @@ Add it to your Rackup `config.ru` file like so:
     require 'rack/digestif'
     use Rack::Digestif
 
-By default `Rack::Digestif` will rewrite all incoming URLs that have a 32 character digest before the file extension. If you want to limit it to a given path, such as `/assets`, you can easily do this like so:
+By default `Rack::Digestif` will rewrite all incoming URLs that have a digest. If you want to limit it to a given path, such as `/assets`, you simply pass the path as the first argument:
 
     use Rack::Digestif, "/assets/"
 
