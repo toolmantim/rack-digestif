@@ -16,7 +16,7 @@ This works thanks to Sprockets compiling both digest and non-digest filenames in
 Why?
 ----
 
-Sprockets (and the Rails asset pipeline) use MD5 hashes of files to create cache-busting URLs. These new URLs have one big disadvantage over the old query-string method: requests to assets with an out-of-date digest cause a 404, unlike the old method which would serve the asset file regardless of the correctness of the timestamp. This problem becomes particularly noticable during a deployment when a browser requests an asset but the digest has been updated on the server and so they receive a 404, resulting in an unstyled or javascript-less page.
+Sprockets (and the Rails asset pipeline) uses MD5 hashes on the asset filenames to create cache-busting URLs. Although these new URLs are awesome they introduce a problem that the old query-string method did not have: requests to assets with an out-of-date digest will receive a 404. Why is this a problem? During a deployment there's a gap in between when the browser receives the HTML and when it requests an asset, and during that time the server may and probably will be updated and that poor customer will end up with an unstyled or javascript-less page.
 
 Luckily the fix is easy; Sprockets generates every compiled file with and without a digest, so all that's needed is to rewrite incoming requests to remove the digest from the path. You can do this in nginx or HTTP proxy, rack-rewrite, or using `Rack::Digestif`.
 
@@ -45,6 +45,15 @@ Firstly add it to your `Gemfile`, and then add the middleware in `application.rb
 
     config.middleware.insert_before ActionDispatch::Static, Rack::Digestif
 
+
+Doesn't fresh assets + stale markup = trouble?
+-----------------------------------------
+
+As James A Rosen [pointed out](https://twitter.com/#!/jamesarosen/status/176386910237892608) this isn't the ideal solution because you're serving up a new assets to old pages that aren't designed for the new scripts.
+
+To be clear: this solution just brings things back on par with the way things have always been with timestamped assets.
+
+If this isn't robust enough for you then ditch it, and consider pushing compiled assets up to S3 (probably fronted by a CDN such as CloudFront), and making sure old versions of assets are still around.
 
 License
 -------
