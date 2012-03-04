@@ -1,7 +1,7 @@
 Rack::Digestif
 ==============
 
-A rack middleware to ensure Sprockets assets are served even if the digest is incorrect, preventing unstyled and javascript-less pages during redeploys.
+A rack middleware to remove the digest from Sprockets asset requests, preventing the chance of a 404 when the asset's digest changes.
 
 For example:
 
