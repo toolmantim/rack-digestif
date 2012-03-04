@@ -39,12 +39,7 @@ You can also limit it to affect only a certain path:
 Rails Usage
 -----------
 
-Firstly add the gem to the `assets` group in your Gemfile, for example:
-
-    group :assets do
-      gem 'rack-digestif'
-
-and then add the following to your application.rb:
+Add it your `application.rb` file like so:
 
     config.middleware.insert_before Rack::Lock, Rack::Digestif
 
