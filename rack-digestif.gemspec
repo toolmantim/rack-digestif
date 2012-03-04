@@ -2,8 +2,8 @@ Gem::Specification.new do |s|
   s.name = 'rack-digestif'
   s.version = '0.1'
 
-  s.summary = 'A rack middleware for removing the digest in Sprockets asset requests'
-  s.description = 'A rack middleware for removing the digest in Sprockets asset requests, saving your users from unstyled and javascript-less pages.'
+  s.summary = 'A rack middleware for preventing 404s on digest changes of Sprockets assets'
+  s.description = 'A rack middleware for preventing 404s on digest changes of Sprockets assets, saving your users from unstyled and javascript-less pages during a redeploy.'
 
   s.author = 'Tim Lucas'
   s.email = 't@toolmantim.com'
