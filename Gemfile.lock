@@ -1,0 +1,19 @@
+PATH
+  remote: .
+  specs:
+    rack-digestif (0.1)
+      rack
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    minitest (2.11.3)
+    rack (1.4.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler
+  minitest
+  rack-digestif!
