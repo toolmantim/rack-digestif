@@ -1,4 +1,4 @@
-Rack::Digestif
+Rack::Digestif [![Build Status](https://secure.travis-ci.org/toolmantim/rack-digestif.png?branch=master)](http://travis-ci.org/toolmantim/rack-digestif)
 ==============
 
 A rack middleware that ensures Sprockets assets are served regardless of whether the asset digest matches.
