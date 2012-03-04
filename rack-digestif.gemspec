@@ -3,7 +3,7 @@ Gem::Specification.new do |s|
   s.version = '0.1'
 
   s.summary = 'A rack middleware for preventing 404s on digest changes of Sprockets assets'
-  s.description = 'A rack middleware for preventing 404s on digest changes of Sprockets assets, saving your users from unstyled and javascript-less pages during a redeploy.'
+  s.description = 'A rack middleware for preventing 404s on digest changes of Sprockets assets. Save your users from unstyled and javascript-less pages during a redeploy!'
 
   s.author = 'Tim Lucas'
   s.email = 't@toolmantim.com'

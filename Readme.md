@@ -1,7 +1,7 @@
 Rack::Digestif
 ==============
 
-A rack middleware for preventing 404s on digest changes of Sprockets assets, saving your users from unstyled and javascript-less pages during a redeploy.
+A rack middleware for preventing 404s on digest changes of Sprockets assets. Save your users from unstyled and javascript-less pages during a redeploy!
 
 For example:
 
@@ -26,20 +26,20 @@ Installation
 Usage
 -----
 
-Add it to your Rackup `config.ru` file:
+Add it to your Rackup `config.ru` file like so:
 
     require 'rack/digestif'
     use Rack::Digestif
 
-You can also limit it to affect only a certain path:
+By default `Rack::Digestif` will rewrite all incoming URLs that have a 32 character digest before the file extension. If you want to limit it to a given path, such as `/assets`, you can easily do this like so:
 
-    use Rack::Digestif, "/some-path"
+    use Rack::Digestif, "/assets/"
 
 
 Rails Usage
 -----------
 
-Add it your `application.rb` file like so:
+Firstly add it to your `Gemfile`, and then add the middleware in `application.rb` like so:
 
     config.middleware.insert_before Rack::Lock, Rack::Digestif
 
