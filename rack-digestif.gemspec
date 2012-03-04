@@ -10,7 +10,12 @@ Gem::Specification.new do |s|
   s.homepage = 'http://github.com/toolmantim/rack-digestif'
 
   s.files        = Dir['Readme.md', 'MIT-LICENSE', 'Rakefile', 'rack-digestif.gemspec', 'lib/**/*']
-  s.test_files   = Dir['test/*']
+  s.test_files   = Dir['spec/*']
   s.require_path = 'lib'
   s.requirements << 'none'
+  
+  s.add_dependency 'rack'
+  
+  s.add_development_dependency "minitest"
+  s.add_development_dependency "bundler"
 end
