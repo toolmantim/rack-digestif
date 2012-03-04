@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.name = 'rack-digestif'
   s.version = '0.1'
 
-  s.summary = "A rack middleware to remove the digest from Sprockets asset requests, preventing the chance of a 404 when the asset's digest changes"
+  s.summary = "A rack middleware to ensure Sprockets assets are served regardless of whether the requested digest matches that on the server"
   s.description = s.summary
 
   s.author = 'Tim Lucas'
