@@ -43,7 +43,7 @@ Rails Usage
 
 Firstly add it to your `Gemfile`, and then add the middleware in `application.rb` like so:
 
-    config.middleware.insert_before Rack::Lock, Rack::Digestif
+    config.middleware.insert_before ActionDispatch::Static, Rack::Digestif
 
 
 License
