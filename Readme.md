@@ -49,11 +49,9 @@ Firstly add it to your `Gemfile`, and then add the middleware in `application.rb
 But fresh assets + stale markup = trouble!
 ------------------------------------------
 
-As James A Rosen [pointed out](https://twitter.com/#!/jamesarosen/status/176386910237892608) this isn't the ideal solution because you're serving up a new assets to old pages that aren't designed for them.
+As James A Rosen [pointed out](https://twitter.com/#!/jamesarosen/status/176386910237892608) this isn't the ideal solution because you're serving up a new assets to old pages. 
 
-To be clear: this solution just brings things back on par with the way things have always been with timestamped assets.
-
-If this isn't robust enough for you then ditch it, and consider pushing compiled assets up to S3 (probably fronted by a CDN such as CloudFront), and making sure old versions of assets are still around.
+Rack::Digestif just brings things back on par with the old query-string method. If this isn't robust enough for you then ditch it and consider another approach, such as pushing compiled assets up to S3 and making sure old versions of assets exist across deployments.
 
 License
 -------
