@@ -46,10 +46,10 @@ Firstly add it to your `Gemfile`, and then add the middleware in `application.rb
     config.middleware.insert_before ActionDispatch::Static, Rack::Digestif
 
 
-Doesn't fresh assets + stale markup = trouble?
------------------------------------------
+But fresh assets + stale markup = trouble!
+------------------------------------------
 
-As James A Rosen [pointed out](https://twitter.com/#!/jamesarosen/status/176386910237892608) this isn't the ideal solution because you're serving up a new assets to old pages that aren't designed for the new scripts.
+As James A Rosen [pointed out](https://twitter.com/#!/jamesarosen/status/176386910237892608) this isn't the ideal solution because you're serving up a new assets to old pages that aren't designed for them.
 
 To be clear: this solution just brings things back on par with the way things have always been with timestamped assets.
 
